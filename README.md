@@ -30,3 +30,7 @@ Contributions are welcome. A `CONTRIBUTING.md` guide will be added soon.
 ## License
 
 This project is licensed under the MIT License.
+
+## Contributors
+-Ahmed Kamel 
+-Mohammed Azzam
