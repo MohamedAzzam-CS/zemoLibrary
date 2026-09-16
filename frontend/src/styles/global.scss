@@ -1,18 +1,35 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --border-color: #e5e5e5;
+  --card-bg: #ffffff;
+  --muted-text: #4d4d4d;
+  --overlay: rgba(255, 255, 255, 0.45);
+  //--surface: rgba(255, 255, 255, 0.82);
 }
 
-html, body, #root {
-  height: 100%;
+[data-theme='dark'] {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --border-color: #2e2e2e;
+  --card-bg: #1e1e1e;
+  --muted-text: #cccccc;
+  --overlay: rgba(0, 0, 0, 0.6);
+  --surface: rgba(18, 18, 18, 0.82);
 }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body, #root { height: 100%; }
 
 body {
   font-family: system-ui, -apple-system, sans-serif;
+  color: var(--text-color);
+  background-image: linear-gradient(var(--overlay), var(--overlay)), url('/BG.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+a { text-decoration: none; color: inherit; }
