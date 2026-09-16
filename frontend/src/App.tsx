@@ -1,20 +1,20 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
-import Home from './pages/Home/Home';
-import Catalog from './pages/Catalog/Catalog';
-import BookDetail from './pages/BookDetail/BookDetail';
-import Search from './pages/Search/Search';
-import Login from './pages/Login/Login';
-import Profile from './pages/Profile/Profile';
-import NotFound from './pages/NotFound/NotFound';
-//import ComingSoon from './pages/CommingSoon/ComingSoon';
+//import Layout from './components/Layout/Layout';
+//import Home from './pages/Home/Home';
+//import Catalog from './pages/Catalog/Catalog';
+//import BookDetail from './pages/BookDetail/BookDetail';
+//import Search from './pages/Search/Search';
+//import Login from './pages/Login/Login';
+//import Profile from './pages/Profile/Profile';
+//import NotFound from './pages/NotFound/NotFound';
+import ComingSoon from './pages/CommingSoon/ComingSoon';
 
 export default function App() {
   return (
   <Routes>
-    {/*<Route path="/coming-soon" element={<ComingSoon />} />*/}
+    <Route path="/coming-soon" element={<ComingSoon />} />
 
-    {/* Temporarily disabled*/}
+    {/* Temporarily disabled
     <Route element={<Layout />}>
       <Route path="/" element={<Home />} />
       <Route path="/catalog" element={<Catalog />} />
@@ -23,7 +23,7 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="*" element={<NotFound />} />
-    </Route>
+    </Route>*/}
 
     <Route
       path="*"
