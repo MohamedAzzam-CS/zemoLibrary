@@ -22,8 +22,8 @@ export default function App() {
       <Route path="/search" element={<Search />} />
       <Route path="/login" element={<Login />} />
       <Route path="/profile" element={<Profile />} />
-    </Route>
-    */}
+      <Route path="*" element={<NotFound />} />
+    </Route>*/}
 
     <Route
       path="*"

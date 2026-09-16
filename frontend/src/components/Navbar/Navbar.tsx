@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import styles from './Navbar.module.scss';
 
 const LINKS = [
@@ -21,6 +22,7 @@ export default function Navbar() {
           {link.label}
         </NavLink>
       ))}
+      <ThemeToggle />
     </nav>
   );
 }
