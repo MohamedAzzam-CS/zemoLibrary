@@ -7,6 +7,11 @@ export function login(email: string, _password: string): Promise<User> {
   return Promise.resolve(currentUser);
 }
 
+export function signup(name: string, email: string, _password: string): Promise<User> {
+  currentUser = { id: 'u1', name, email };
+  return Promise.resolve(currentUser);
+}
+
 export function logout(): void {
   currentUser = null;
 }
