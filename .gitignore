@@ -1,0 +1,25 @@
+# Internal agent guide
+agen-guide.md
+
+# Environment and secrets
+.env
+.env.*
+*.env
+
+# Build output & executables
+dist/
+*.exe
+*.o
+*.obj
+*.dll
+
+# Database files
+data/
+*.db
+
+# C source files and native headers
+*.c
+*.h
+
+# Agent scripts and internal automation
+scripts/

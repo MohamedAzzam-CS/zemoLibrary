@@ -1,34 +1,43 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-//import Layout from './components/Layout/Layout';
-//import Home from './pages/Home/Home';
-//import Catalog from './pages/Catalog/Catalog';
-//import BookDetail from './pages/BookDetail/BookDetail';
-//import Search from './pages/Search/Search';
-//import Login from './pages/Login/Login';
-//import Profile from './pages/Profile/Profile';
-//import NotFound from './pages/NotFound/NotFound';
-import ComingSoon from './pages/CommingSoon/ComingSoon';
+import { useEffect } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import Login from './pages/Login/Login';
+import Welcome from './pages/Welcome/Welcome';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
+import { pingServer, registerServerDownHandler } from './services/apiClient';
 
 export default function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Register global handler for any API fault
+    registerServerDownHandler(() => {
+      navigate('/500', { replace: true });
+    });
+
+    // Skip ping if already on an error route
+    if (location.pathname === '/500' || location.pathname === '/403' || location.pathname === '/404' || location.pathname === '/422') {
+      return;
+    }
+
+    // Startup ping to verify server connectivity
+    pingServer().then((isOnline) => {
+      if (!isOnline) {
+        navigate('/500', { replace: true });
+      }
+    });
+  }, [navigate, location.pathname]);
+
   return (
-  <Routes>
-    <Route path="/coming-soon" element={<ComingSoon />} />
-
-    {/* Temporarily disabled
-    <Route element={<Layout />}>
-      <Route path="/" element={<Home />} />
-      <Route path="/catalog" element={<Catalog />} />
-      <Route path="/catalog/:id" element={<BookDetail />} />
-      <Route path="/search" element={<Search />} />
+    <Routes>
+      <Route path="/500" element={<ErrorPage kind="server-down" />} />
+      <Route path="/403" element={<ErrorPage kind="not-authorized" />} />
+      <Route path="/422" element={<ErrorPage kind="file-corrupted" />} />
+      <Route path="/404" element={<ErrorPage kind="not-found" />} />
+      <Route path="/welcome" element={<Welcome />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="*" element={<NotFound />} />
-    </Route>*/}
-
-    <Route
-      path="*"
-      element={<Navigate to="/coming-soon" replace />}
-    />
-  </Routes>
-);
+      <Route path="/" element={<Welcome />} />
+      <Route path="*" element={<ErrorPage kind="not-found" />} />
+    </Routes>
+  );
 }
